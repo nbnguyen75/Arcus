@@ -1,0 +1,3 @@
+k8s/base/secrets.yaml
+k8s/overlays/*/secrets.yaml
+*.env

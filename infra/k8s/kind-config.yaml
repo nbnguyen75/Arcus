@@ -1,0 +1,21 @@
+# infra/k8s/kind-config.yaml
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+  - role: control-plane
+    kubeadmConfigPatches:
+      - |
+        kind: InitConfiguration
+        nodeRegistration:
+          kubeletExtraArgs:
+            node-labels: "ingress-ready=true"
+    extraPortMappings:
+      - containerPort: 30080   # Kong HTTP proxy
+        hostPort: 8000
+        protocol: TCP
+      - containerPort: 30443   # Kong HTTPS proxy
+        hostPort: 8443
+        protocol: TCP
+      - containerPort: 30900   # Kong Admin API
+        hostPort: 9000
+        protocol: TCP

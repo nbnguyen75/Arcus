@@ -1,0 +1,24 @@
+ingressController:
+  enabled: true
+  ingressClass: kong
+
+proxy:
+  type: NodePort
+  http:
+    nodePort: 30080
+    enabled: true
+  tls:
+    nodePort: 30443
+    enabled: true
+
+admin:
+  enabled: true
+  type: NodePort
+  http:
+    enabled: true
+    nodePort: 30900
+
+enterprise:
+  enabled: false
+postgresql:
+  enabled: false
